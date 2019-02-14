@@ -20,7 +20,13 @@ class App extends React.Component<any> {
           <h1>Todo List</h1>
         </header>
 
-        <ul>{this.renderTasks()}</ul>
+        <ul>
+        { 
+          this.props.tasks.map((task) => (
+            <Task key={task._id} task={task} />
+          ))
+        } 
+        </ul> 
       </div>
     )
   }
