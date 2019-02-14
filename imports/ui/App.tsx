@@ -1,4 +1,5 @@
 import * as React from 'react'
+import * as ReactDOM from 'react-dom'
 
 import { withTracker } from 'meteor/react-meteor-data';
  
@@ -9,8 +10,25 @@ import Task from './Task'
 // App component - represents the whole app
 class App extends React.Component<any> {
 
+  state = {
+    newTask: ''
+  }
+
   renderTasks() {
     return this.props.tasks
+  }
+
+  _newTask_handleSubmit = (event) => {
+    event.preventDefault();
+    Tasks.insert({
+      text: this.state.newTask,
+      createdAt: new Date(), // current time
+    });
+    this.setState({newTask: ''})
+  }
+
+  _newTask_onChange = (event) => {
+    this.setState({newTask : event.target.value})
   }
 
   render() {
@@ -19,6 +37,17 @@ class App extends React.Component<any> {
         <header>
           <h1>Todo List</h1>
         </header>
+
+        <form className="new-task" onSubmit={this._newTask_handleSubmit} >
+            <input
+              type="text"
+              ref="textInput"
+              placeholder="Type to add new tasks"
+              value={this.state.newTask}
+              onChange={this._newTask_onChange}
+            />
+          </form>
+
 
         <ul>
         { 
