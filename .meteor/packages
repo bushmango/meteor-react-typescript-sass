@@ -21,3 +21,5 @@ static-html
 fourseven:scss
 barbatus:typescript
 react-meteor-data
+accounts-ui
+accounts-password
