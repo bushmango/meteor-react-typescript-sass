@@ -11,5 +11,9 @@
     "strictNullChecks": false
   },
   "include": ["client/**/*", "server/**/*"],
-  "exclude": ["node_modules", ".meteor"]
+  "exclude": ["node_modules", ".meteor"],
+  "baseUrl": ".",
+  "paths": {
+    "*": ["*"]
+  }
 }
